@@ -6,6 +6,7 @@
         <name>ApexClass</name>
     </types>
     <types>
+        <members>CmpLookup</members>
         <members>CmpPills</members>
         <members>EvtCmpLookupChanged</members>
         <members>EvtCmpLookupCleared</members>
