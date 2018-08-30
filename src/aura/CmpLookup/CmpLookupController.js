@@ -46,5 +46,9 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         helper.clearField(component,true);
         helper.toggleIcons(component,true);
     },
+    scroll : function(component, event, helper){
+        console.log('in scroll');
+    },
+
 
 })

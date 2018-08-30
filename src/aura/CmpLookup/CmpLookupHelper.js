@@ -121,6 +121,13 @@
             var otherFields = component.get("v.otherFields");
             var whereClause = component.get("v.whereClause");
             var searchWhereClause = component.get("v.searchWhereClause");
+            var selectedValue = component.get("v.selectedValue");
+            var selectedName = component.get("v.selectedName");
+
+            // console.log('whereClause = ' + whereClause);
+            // console.log('searchWhereClause = ' + searchWhereClause);
+            // console.log('selectedValue = ' + selectedValue);
+            // console.log('selectedName = ' + selectedName);
 
             if($A.util.isEmpty(sObjectName) || $A.util.isEmpty(displayedFieldName) ||
                 $A.util.isEmpty(valueFieldName))
@@ -128,10 +135,30 @@
                 return;
             }
 
-            if(searchWhereClause && searchWhereClause != ''){
-                whereClause = whereClause ? '(' + whereClause + ') AND (' + searchWhereClause + ')': searchWhereClause;
+
+
+            if($A.util.isEmpty(searchWhereClause))
+            {
+
+                if (!$A.util.isEmpty(selectedValue))
+                {
+                    searchWhereClause = valueFieldName + " = '" + selectedValue + "'";
+                }
+                else if (!$A.util.isEmpty(selectedName))
+                {
+                    searchWhereClause = displayedFieldName + " LIKE '%" + selectedName + "%'";
+                }
             }
 
+            if(searchWhereClause && searchWhereClause != '')
+            {
+                // whereClause = whereClause ? '(' + whereClause + ') AND (' + searchWhereClause + ')': searchWhereClause;
+                whereClause = whereClause ?  whereClause + ' AND ' + searchWhereClause : searchWhereClause;
+            }
+            //
+            // if(searchWhereClause && searchWhereClause != ''){
+            //     whereClause = whereClause ? '(' + whereClause + ') AND (' + searchWhereClause + ')': searchWhereClause;
+            // }
             action.setParams({ "sObjectName" : sObjectName ,
                                  "valueFieldName" : valueFieldName,
                                  "otherFields" : otherFields,

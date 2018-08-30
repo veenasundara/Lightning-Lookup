@@ -56,8 +56,8 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <aura:handler name="change" value="{!v.whereClause}" action="{!c.doInit}" />
     <aura:handler name="change" value="{!v.sObjectName}" action="{!c.doInit}" />
     <aura:handler name="change" value="{!v.checkValidity}" action="{!c.checkValidity}" />
-    <aura:handler name="change" value="{!v.selectedName}" action="{!c.setInputValue}" />
-    <aura:handler name="change" value="{!v.selectedValue}" action="{!c.valueChanged}" />
+    <!--<aura:handler name="change" value="{!v.selectedName}" action="{!c.setInputValue}" />-->
+    <aura:handler name="change" value="{!v.selectedValue}" action="{!c.doInit}" />
 
     <div aura:id="dropDown" class="slds-form-element slds-lookup" data-select="single">
         <div class="{!v.class + ' ' + v.errorClass}">
@@ -101,8 +101,8 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                           onclick="{!c.toggleMenu }" alternativeText="toggle show"/>
                 </div>
             </div>
-            <div class="slds-lookup__menu" id="lookup-65" >
-                <ul class="slds-lookup__list" role="listbox" aura:id="diplayedul">
+            <div class="slds-lookup__menu" id="lookup-65" onscroll="{!c.scroll}">
+                <ul class="slds-lookup__list" role="listbox" aura:id="diplayedul" >
                     <aura:iteration var="item" items="{!v.matchedListDisplay}" indexVar="idx">
                         <li role="presentation" data-index="{!idx}" onclick="{!c.selectItem}" onmouseover="{!c.hover}" class="push-down">
                             <aura:renderIf isTrue="{!v.svg != null}">
