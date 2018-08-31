@@ -33,15 +33,9 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <aura:attribute name="svg" type="String" access="public" description="icon name"/>
     <aura:attribute name="showHelp" type="Boolean" access="public" default="false" description="Whether to show field help box"/>
     <aura:attribute name="helpText" type="String" access="public" description="Help text for field"/>
-    <aura:attribute name="helpTextBelow" type="Boolean" access="public" default="true" description="Help text for field will show below icon"/>
     <aura:attribute name="selectedValue" type="String" access="public" required="false" description="value of 'valueFieldName' for the selected item"/>
     <aura:attribute name="selectedName" type="String" access="public" required="false" description="value of 'displayedFieldName' for the selected item"/>
     <aura:attribute name="selectedRecord" type="Object" access="public" required="false" description="SObject record for the selected item"/>
-    <aura:attribute name="toolTipPosition" type="String" access="public" default="position:absolute;top:40px;left:60px;"
-                    description="position will be built based on label length and helpTextBelow"/>
-    <aura:attribute name="nubbinPosition" type="String" access="public" default="{!v.helpTextBelow ? 'slds-nubbin_top-left' : 'slds-nubbin_bottom-left'}"/>
-
-    <aura:attribute name="errorClass" type="String" access="private" required="false" default=""/>
 
     <aura:attribute name="matchedListDisplay" type="String[]" access="private" />
     <aura:attribute name="matchedListValue" type="String[]" access="private" />
@@ -61,15 +55,28 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     <div aura:id="dropDown" class="slds-dropdown-trigger slds-dropdown-trigger--click lookupDropdown"
          style="width:100%;min-height:60px;">
-        <lightning:input aura:id="myinput" type="{!v.disabled ? 'text' : 'search'}" label="{!v.label}"
-                         name="search" required="{!v.required}" disabled="{!v.disabled}"
-                         class="lookup" onchange="{!c.performLookup}" value="{!v.selectedName}"
-                         onclick="{!c.toggleMenu }"/>
-        <div aura:id="pillsdiv"/>
-        <aura:if isTrue="{!!v.disabled}">
-            <lightning:buttonicon variant="bare" iconName="utility:switch" class="alignButton"
-                                  onclick="{!c.toggleMenu }" alternativeText="toggle show"/>
-        </aura:if>
+        <div class="slds-form-element">
+            <!-- Label and help text -->
+            <aura:if isTrue="{!v.label}">
+                <label class="slds-form-element__label" for="text-input-01">{!v.label}</label>
+                <aura:if isTrue="{!v.showHelp &amp;&amp; v.helpText}">
+                    <lightning:helptext content="{!v.helpText}"/>
+                </aura:if>
+            </aura:if>
+            <!-- input -->
+            <div class="slds-form-element__control">
+                <lightning:input aura:id="myinput" type="{!v.disabled ? 'text' : 'search'}" label="{!v.label}"
+                                 name="search" required="{!v.required}" disabled="{!v.disabled}"
+                                 class="lookup" onchange="{!c.performLookup}" value="{!v.selectedName}"
+                                 onclick="{!c.toggleMenu }" variant="label-hidden"/>
+                <div aura:id="pillsdiv"/>
+                <aura:if isTrue="{!!v.disabled}">
+                    <lightning:buttonicon variant="bare" iconName="utility:switch" class="alignButton"
+                                          onclick="{!c.toggleMenu }" alternativeText="toggle show"/>
+                </aura:if>
+            </div>
+        </div>
+
         <div class="slds-dropdown slds-dropdown--left">
             <ul class="slds-dropdown__list" role="menu">
                 <aura:iteration var="item" items="{!v.matchedListDisplay}" indexVar="idx">

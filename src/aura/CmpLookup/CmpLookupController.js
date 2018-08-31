@@ -33,8 +33,5 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         // then check input again
         myinput.showHelpMessageIfInvalid();
     },
-    setHelpTextProperties : function(component, event, helper) {
-        helper.hlpSetHelpTextProperties(component);
-    },
 
 })

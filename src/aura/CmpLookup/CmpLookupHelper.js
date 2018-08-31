@@ -14,32 +14,6 @@
  IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 ({
-    /**
-     * javascript positioning for field help text
-     * @param  {[aura]}  component [description]
-     * @return {[type]}            [void]
-     */
-    hlpSetHelpTextProperties: function(component) {
-        try{
-            var divName = component.getGlobalId() + '_helpDiv';
-            var helpDiv = document.getElementById(divName);
-            if(!helpDiv){
-                return;
-            }
-            var helpButton = helpDiv.getElementsByTagName("button");
-            var leftPos = helpButton[0].offsetLeft - 16;
-            var helpTextBelow = component.get("v.helpTextBelow");
-
-            var toolTipPosition = 'position:absolute;';
-            toolTipPosition += helpTextBelow ? 'top:40px;' : 'bottom:65px;';
-            toolTipPosition += 'left:' + leftPos + 'px;';
-            component.set("v.toolTipPosition", toolTipPosition);
-        }
-        catch(e){
-            this.showError(component, 'hlpSetHelpTextProperties - ' + e.message);
-        }
-
-    },
 
     /**
      * server call to describe field and set sObject Name

@@ -15,7 +15,7 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 .THIS .lookup {
     position: absolute;
-    top: 0;
+    top: 1.5rem;
     left: 0;
     width:100%;
     min-width: 100%;
@@ -28,7 +28,7 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 .THIS .alignButton{
     position: absolute;
-    top: 1.8rem;
+    top: 2rem;
     right: 0;
     z-index: 10;
 }
