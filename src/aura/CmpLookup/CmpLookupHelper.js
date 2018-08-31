@@ -98,10 +98,10 @@
             var selectedValue = component.get("v.selectedValue");
             var selectedName = component.get("v.selectedName");
 
-            // console.log('whereClause = ' + whereClause);
-            // console.log('searchWhereClause = ' + searchWhereClause);
-            // console.log('selectedValue = ' + selectedValue);
-            // console.log('selectedName = ' + selectedName);
+            console.log('whereClause = ' + whereClause);
+            console.log('searchWhereClause = ' + searchWhereClause);
+            console.log('selectedValue = ' + selectedValue);
+            console.log('selectedName = ' + selectedName);
 
             if($A.util.isEmpty(sObjectName) || $A.util.isEmpty(displayedFieldName) ||
                 $A.util.isEmpty(valueFieldName))
@@ -129,6 +129,7 @@
                 // whereClause = whereClause ? '(' + whereClause + ') AND (' + searchWhereClause + ')': searchWhereClause;
                 whereClause = whereClause ?  whereClause + ' AND ' + searchWhereClause : searchWhereClause;
             }
+            console.log('whereClause = ' + whereClause);
             //
             // if(searchWhereClause && searchWhereClause != ''){
             //     whereClause = whereClause ? '(' + whereClause + ') AND (' + searchWhereClause + ')': searchWhereClause;

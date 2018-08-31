@@ -38,6 +38,8 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     width:100%;
     max-width:100%;
     margin-top: -.5rem;
+    overflow: auto;
+    max-height: 300px;
 }
 
 .THIS .slds-input::-ms-clear {

@@ -67,7 +67,7 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             <div class="slds-form-element__control">
                 <lightning:input aura:id="myinput" type="{!v.disabled ? 'text' : 'search'}" label="{!v.label}"
                                  name="search" required="{!v.required}" disabled="{!v.disabled}"
-                                 class="lookup" onchange="{!c.performLookup}" value="{!v.selectedName}"
+                                 class="lookup" onchange="{!c.performLookup}"
                                  onclick="{!c.toggleMenu }" variant="label-hidden"/>
                 <div aura:id="pillsdiv"/>
                 <aura:if isTrue="{!!v.disabled}">
