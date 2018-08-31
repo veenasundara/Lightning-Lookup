@@ -189,33 +189,9 @@
             $A.enqueueAction(action);
         }
         catch(e){
-            this.showError(component, e.message);
+            this.showError(component, 'hlpGetRecords - ' + e.message);
         }
 
-    },
-    /**
-     * validate lookup field
-     * @param  {[aura]} component [description]
-     */
-    hlpCheckValidity : function(component) {
-        try{
-            var myinput = document.getElementById(component.getGlobalId() + "_myinput").value;
-            var required = component.get("v.required");
-            var dropDown = component.find("dropDown");
-            if(required && (!myinput || myinput == '')){
-                //$A.util.addClass(dropDown, 'slds-has-error');
-                component.set("v.errorClass", 'slds-has-error');
-                component.set("v.valid", false);
-            }
-            else{
-                component.set("v.errorClass", '');
-                //$A.util.removeClass(dropDown, 'slds-has-error');
-                component.set("v.valid", true);
-            }
-        }
-        catch(e){
-            this.showError(component, e.message);
-        }
     },
 
     /**
@@ -251,7 +227,7 @@
             }
         }
         catch(e){
-            this.showError(component, e.message);
+            this.showError(component, 'hlpValueChanged - ' + e.message);
         }
     },
 
@@ -264,9 +240,9 @@
             // we need to reset selected value and and name becaues user is typing again, but since
             // selectedName is tied ot the value of teh input, we should save what the user has typed and restore
             // it after we change selectedName
-            var searchString = document.getElementById(component.getGlobalId() + "_myinput").value;
+            var searchString = component.find("myinput").get("v.value");
             this.clearField(component,false);
-            document.getElementById(component.getGlobalId() + "_myinput").value = searchString;
+            component.find("myinput").set("v.value", searchString);
             if(searchString.length < 2){
                 component.set("v.searchWhereClause", '');
                 component.set("v.selectedValue", '');
@@ -282,7 +258,7 @@
             this.hlpGetRecords(component, false);
         }
         catch(e){
-            this.showError(component, e.message);
+            this.showError(component, 'hlpPerformLookup - ' + e.message);
         }
     },
 
@@ -304,11 +280,10 @@
                 this.fireUpdate(component, matchedListRecords[index],matchedListValue[index],matchedListDisplay[index]);
             }
 
-            this.hlpCheckValidity(component);
             this.hideDropDown(component);
         }
         catch(e){
-            this.showError(component, e.message);
+            this.showError(component, 'hlpSelectItem - ' + e.message);
         }
     },
 
@@ -365,9 +340,9 @@
      */
     populateField : function(component,name){
         try{
-            var f = component.find('inputField')
+            var f = component.find('myInput')
             if(!component.get('v.pills')){
-                document.getElementById(component.getGlobalId() + "_myinput").value = name;
+                component.find("myinput").set("v.value", name);
                 $A.util.removeClass(component.find('removebtn'),'hide');
             }
             else{
@@ -389,7 +364,7 @@
             }
         }
         catch(e){
-            this.showError(component, e.message);
+            this.showError(component, 'populateField - ' + e.message);
         }
     },
 
@@ -483,7 +458,7 @@
             this.toggleIcons(component,true);
         }
         catch(e){
-            this.showError(component, e.message);
+            this.showError(component, 'showDropDown - ' + e.message);
         }
     },
 
@@ -497,7 +472,7 @@
             $A.util.removeClass(dropDown, "slds-is-open");
         }
         catch(e){
-            this.showError(component, e.message);
+            this.showError(component, 'hideDropDown - ' + e.message);
         }
     },
 
@@ -531,13 +506,12 @@
             component.set('v.selectedName',null);
             component.set('v.selectedValue',null);
             component.find('pillsdiv').set('v.body',null);
-            $A.util.removeClass(component.find("inputField"),'hide');
-            $A.util.addClass(component.find('removebtn'),'hide');
+            $A.util.removeClass(component.find("myInput"),'hide');
             if(fireEvent)
                 this.fireClear(component);
         }
         catch(e){
-            this.showError(component, e.message);
+            this.showError(component, 'clearField - ' + e.message);
         }
     },
 

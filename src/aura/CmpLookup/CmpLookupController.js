@@ -29,26 +29,12 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         helper.hlpToggleMenu(component);
     },
     checkValidity : function(component, event, helper) {
-        helper.hlpCheckValidity(component);
+        var myinput = component.find("myinput");
+        // then check input again
+        myinput.showHelpMessageIfInvalid();
     },
     setHelpTextProperties : function(component, event, helper) {
         helper.hlpSetHelpTextProperties(component);
     },
-    setInputValue : function(component, event, helper) {
-        var selectedName = component.get("v.selectedName");
-        helper.populateField(component, selectedName);
-        //document.getElementById(component.getGlobalId() + "_myinput").value = selectedName;
-    },
-    valueChanged : function(component, event, helper) {
-        helper.hlpValueChanged(component);
-    },
-    clearField : function(component, event, helper){
-        helper.clearField(component,true);
-        helper.toggleIcons(component,true);
-    },
-    scroll : function(component, event, helper){
-        console.log('in scroll');
-    },
-
 
 })
