@@ -50,7 +50,7 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <aura:handler name="change" value="{!v.whereClause}" action="{!c.doInit}" />
     <aura:handler name="change" value="{!v.sObjectName}" action="{!c.doInit}" />
     <aura:handler name="change" value="{!v.checkValidity}" action="{!c.checkValidity}" />
-    <aura:handler name="change" value="{!v.selectedValue}" action="{!c.doInit}" />
+    <aura:handler name="change" value="{!v.selectedValue}" action="{!c.valueChanged}" />
 
 
     <div aura:id="dropDown" class="slds-dropdown-trigger slds-dropdown-trigger--click lookupDropdown"
@@ -58,6 +58,7 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         <div class="slds-form-element">
             <!-- Label and help text -->
             <aura:if isTrue="{!v.label}">
+                <abbr class="{!v.required ? 'slds-required' : 'slds-hide'}" title="required">*</abbr>
                 <label class="slds-form-element__label" for="text-input-01">{!v.label}</label>
                 <aura:if isTrue="{!v.showHelp &amp;&amp; v.helpText}">
                     <lightning:helptext content="{!v.helpText}"/>

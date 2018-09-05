@@ -270,7 +270,7 @@
      * @param  {[String]} recordName [Record Label]
      */
     fireUpdate : function(component, record, recordId, recordName){
-        console.log('EVENT: EvtChangeLookup');
+        //console.log('EVENT: EvtChangeLookup');
         var ev = component.getEvent('EvtCmpLookupChanged');
         ev.setParams({
                          'name' : component.get('v.name'),
@@ -286,7 +286,7 @@
      * @param  {[String]} name  [component id]
      */
     fireClear : function(component){
-        console.log('EVENT: EvtClearLookup');
+        //console.log('EVENT: EvtClearLookup');
         var ev = component.getEvent('EvtCmpLookupCleared');
         ev.setParams({
                          'name' : component.get('v.name')
@@ -299,7 +299,7 @@
      * @param  {[String]} name  [component id]
      */
     fireInit : function(component){
-        console.log('EVENT: EvtInitLookup');
+        //console.log('EVENT: EvtInitLookup');
         var ev = component.getEvent('EvtCmpLookupInitDone');
         ev.setParams({
                          'name' : component.get('v.name')
@@ -351,13 +351,14 @@
         var action = component.get('c.getFieldValue');
         var label = component.get('v.selectedName');
         var val = component.get('v.selectedValue');
+        var obj = component.get('v.sObjectName');
         if(label && val){
             this.populateField(component,label);
             this.fireInit(component);
         }
-        else if (val) {
+        else if (val && obj) {
             action.setParams({
-                                 'obj' : component.get('v.sObjectName'),
+                                 'obj' : obj,
                                  'objId' : val,
                                  'label' : component.get('v.displayedFieldName')
                              });
