@@ -310,6 +310,7 @@
             if(myinput)
             {
                 myinput.set("v.value", name);
+                myinput.showHelpMessageIfInvalid();
             }
         }
         catch(e){
